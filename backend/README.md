@@ -4,7 +4,7 @@
 
 The base URL for all API requests is:
 
-`https://farmxnap-api.onrender.com/api/v1`
+`https://farmxnap.onrender.com/api/v1`
 
 The endpoints are **HATEOAS-compliant** i.e relevant action links are returned in the responses.
 
