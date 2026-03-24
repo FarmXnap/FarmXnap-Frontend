@@ -255,3 +255,152 @@ JSON
   "error": "OTP is incorrect."
 }
 ```
+
+### **4. Login Request**
+
+Request an OTP for an existing user to log back in.
+
+- **Endpoint:** `POST /auth/login_request`
+- **Auth Required:** No
+- **Content-Type:** `application/json`
+
+**Request Body:**
+
+JSON
+
+```json
+{
+  "phone_number": "+2348012345678"
+}
+```
+
+**Success Response (200 OK):**
+
+JSON
+
+```json
+{
+  "message": "OTP sent to your phone number",
+  "data": {
+    "OTP": "123456",
+    "links": {
+      "verify_login": {
+        "method": "POST",
+        "href": "/api/v1/auth/login_verify"
+      }
+    }
+  }
+}
+```
+
+**Error Responses**
+
+422 (Unprocessable Entity)
+
+```json
+{
+  "errors": ["Phone Number is required.", "Phone Number is not valid."]
+}
+```
+
+404 (Not Found)
+
+```json
+{
+  "error": "User not found."
+}
+```
+
+### **5. Login Verify**
+
+Verify the OTP and receive a fresh session token.
+
+- **Endpoint:** `POST /auth/login_verify`
+- **Auth Required:** No
+- **Content-Type:** `application/json`
+
+**Request Body:**
+
+JSON
+
+```json
+{
+  "phone_number": "+2348012345678",
+  "otp": "123456"
+}
+```
+
+**Success Response (200 OK):**
+
+JSON
+
+```json
+{
+  "message": "Login successful.",
+  "data": {
+    "token": "oat_abc123...",
+    "user": {
+      "id": "clx1234567890abcdefg",
+      "role": "farmer",
+      "phone_number": "+2348012345678"
+    }
+  }
+}
+```
+
+**Error Responses**
+
+422 (Unprocessable Entity)
+
+```json
+{
+  "errors": [
+    "Phone Number is required.",
+    "Phone Number is not valid.",
+    "OTP is required."
+  ]
+}
+```
+
+401 (Unauthorized)
+
+```json
+{
+  "error": "Invalid phone number or OTP."
+}
+```
+
+### **6. Logout**
+
+Invalidate the current session token.
+
+- **Endpoint:** `POST /auth/logout`
+- **Auth Required:** Yes
+
+**Success Response (200 OK):**
+
+JSON
+
+```json
+{
+  "message": "Logout successful."
+}
+```
+
+401 (Unauthorized)
+
+```json
+{
+  "error": "Unauthorized access"
+}
+```
+
+### **Frontend Implementation Note**
+
+[!IMPORTANT]
+
+> Auth Flow: For the demo, OTPs are returned in the API response. Autofill these for a smoother flow.
+
+> Token Persistence: Store the token in localStorage or a secure cookie. If any request returns a 401 Unauthorized, clear the storage and redirect the user to the Phone Number screen.
+
+---
