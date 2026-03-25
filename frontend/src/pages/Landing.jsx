@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import AppLogo from '../components/AppLogo'
+import AppLogo from '../component/AppLogo'
 import { useAuthStore } from '../store'
 import { useEffect, useState } from 'react'
 
@@ -44,7 +44,7 @@ export default function Landing() {
 
       {/* Toast */}
       {toast && (
-        <div className="fixed top-4 left-4 right-4 max-w-97.5 mx-auto z-9999 flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-white anim-1"
+        <div className="fixed top-4 left-4 right-4 max-w-[390px] mx-auto z-[9999] flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-white anim-1"
           style={{ background: '#1D9E75', boxShadow: '0 4px 24px rgba(29,158,117,0.4)' }}>
           <span>✓</span> {toast}
         </div>
