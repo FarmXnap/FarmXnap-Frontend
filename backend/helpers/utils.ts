@@ -1,3 +1,4 @@
+import env from '#start/env'
 import { randomInt } from 'node:crypto'
 
 export function generateOtp() {
@@ -6,4 +7,9 @@ export function generateOtp() {
 
 export const nairaISOCode = '566'
 
-export const callbackUrl = 'https://farmxnap.com/api/v1/payments/callback'
+const appUrl =
+  env.get('NODE_ENV') === 'production'
+    ? 'https://farmxnap.onrender.com'
+    : `http://localhost:${env.get('PORT')}`
+
+export const callbackUrl = `${appUrl}/api/v1/payments/callback`
