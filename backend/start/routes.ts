@@ -83,17 +83,18 @@ router
       .only(['store', 'index'])
       .middleware('store', [middleware.auth(), middleware.role({ role: UserRolesEnum.Farmer })])
 
-    // router
-    //   .post('payments/callback', [() => import('#controllers/payments_controller'), 'callback'])
-    //   .as('payments.callback')
-    // // .use(middleware.auth())
+    // Callback to redirect to after payment
+    router
+      .post('payments/callback', [() => import('#controllers/payments_controller'), 'callback'])
+      .as('payments.callback')
 
-    // router
-    //   .post('webhooks/interswitch', [
-    //     () => import('#controllers/webhooks_controller'),
-    //     'interswitch',
-    //   ])
-    //   .as('webhooks.interswitch')
+    // Webhook
+    router
+      .post('webhooks/interswitch', [
+        () => import('#controllers/webhooks_controller'),
+        'interswitch',
+      ])
+      .as('webhooks.interswitch')
   })
   .prefix('api/v1')
   .as('api.v1')

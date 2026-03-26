@@ -51,7 +51,7 @@ export default class ProductsController {
           txnRef: txnRef,
           amount: price * 100, // Interswitch expects Kobo
           currency: nairaISOCode, // Naira ISO Code
-          callbackUrl: callbackUrl, // Todo
+          callbackUrl: callbackUrl,
         },
       },
     })
