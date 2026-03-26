@@ -43,7 +43,8 @@ router
         () => import('#controllers/agro_dealer_profiles_controller')
       )
       .apiOnly()
-      .only(['store'])
+      .only(['store', 'show'])
+      .middleware('show', [middleware.auth(), middleware.role({ role: UserRolesEnum.AgroDealer })])
 
     // Route for admin to verify an agro-dealer
     router
