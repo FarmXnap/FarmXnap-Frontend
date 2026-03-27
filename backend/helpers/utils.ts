@@ -18,3 +18,8 @@ export const interswitchInquiryBaseUrl =
   env.get('NODE_ENV') === 'production'
     ? 'https://webpay.interswitchng.com'
     : 'https://qa.interswitchng.com'
+
+export const interswitchBankListAndVerificationBaseUrl =
+  env.get('NODE_ENV') === 'production'
+    ? `https://api.interswitchng.com/marketplace-routing`
+    : `https://api-marketplace-routing.k8.isw.la`
