@@ -88,7 +88,10 @@ test.group('Products / List', (group) => {
               method: 'GET',
               href: `/api/v1/products/${product.id}`,
             },
-            update: {},
+            update: {
+              method: 'PUT',
+              href: `/api/v1/products/${product.id}`,
+            },
           },
         })),
         links: {

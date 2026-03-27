@@ -561,7 +561,9 @@ Fetch a list of products by a verified agro-dealer.
       "agro_dealer_profile_id": "rahv942immebxa0qcrnivd7z",
       "links": {
         { "view":
-          { "method": "GET", "href": "/api/v1/products/hgertxs38i5v0nf2g493el7n" }
+          { "method": "GET", "href": "/api/v1/products/hgertxs38i5v0nf2g493el7n" },
+          "update":
+          { "method": "PUT", "href": "/api/v1/products/hgertxs38i5v0nf2g493el7n" }
         }
       }
     },
@@ -635,9 +637,19 @@ JSON
   "data": {
     "id": "lbap3onpjxz49st1u857e6p1",
     "name": "Mancozeb 80WP",
+    "category": "Fungicide",
+    "unit": "1kg",
+    "price": "3500.00",
+    "stock_quantity": 48,
+    "target_problems": "Maize leaf spot, blight, and rust.",
+    "description": "A protective wettable powder for maize and other cereal crops...",
+    "created_at": "2026-03-27T07:36:16.147+00:00",
+    "updated_at": "2026-03-27T07:36:16.147+00:00",
     "links": {
       { "view":
-        { "method": "GET", "href": "/api/v1/products/lbap3onpjxz49st1u857e6p1" }
+        { "method": "GET", "href": "/api/v1/products/lbap3onpjxz49st1u857e6p1" },
+        "update":
+        { "method": "PUT", "href": "/api/v1/products/lbap3onpjxz49st1u857e6p1" }
       }
     }
   }
@@ -712,7 +724,80 @@ Show a product by a verified agro-dealer.
     "created_at": "2026-03-27T07:36:16.147+00:00",
     "updated_at": "2026-03-27T07:36:16.147+00:00",
     "links": {
-      { "update": {}
+      { "view":
+        { "method": "GET", "href": "/api/v1/products/lbap3onpjxz49st1u857e6p1" },
+        "update":
+        { "method": "PUT", "href": "/api/v1/products/lbap3onpjxz49st1u857e6p1" }
+      }
+    }
+  }
+}
+```
+
+**Error Responses**
+
+401 (Unauthorized)
+
+```json
+{
+  "error": "Unauthorized access"
+}
+```
+
+403 (Forbidden)
+
+```json
+{
+  "error": "You do not have permission to access this resource."
+}
+```
+
+403 (Forbidden)
+
+```json
+{
+  "error": "You cannot perform this action until you complete verification.'"
+}
+```
+
+404 (Not Found)
+
+```json
+{
+  "error": "Product not found.'"
+}
+```
+
+### **12. Update Product by A Verified Agro-dealer**
+
+Update a product by a verified agro-dealer.
+
+- **Endpoint:** `PUT /products/:id`
+- **Auth Required:** Yes
+- **Authorization:** Verified `agrodealer` role
+- **Content-Type:** `application/json`
+
+**Success Response (200 OK):**
+
+```json
+{
+  "message": "Product updated successfully.",
+  "data": {
+    "id": "hgertxs38i5v0nf2g493el7n",
+    "name": "Mancozeb 80WP",
+    "category": "Fungicide",
+    "unit": "1kg",
+    "price": "3500.00",
+    "stock_quantity": 48,
+    "target_problems": "Maize leaf spot, blight, and rust.",
+    "description": "A protective wettable powder for maize and other cereal crops...",
+    "created_at": "2026-03-27T07:36:16.147+00:00",
+    "updated_at": "2026-03-27T07:36:16.147+00:00",
+    "links": {
+      { "view":
+        { "method": "GET", "href": "/api/v1/products/lbap3onpjxz49st1u857e6p1" },
+        "update":
+        { "method": "PUT", "href": "/api/v1/products/lbap3onpjxz49st1u857e6p1" }
       }
     }
   }
@@ -755,7 +840,7 @@ Show a product by a verified agro-dealer.
 
 ---
 
-### **12. Scan an image and get diagnosis and treatment results**
+### **13. Scan an image and get diagnosis and treatment results**
 
 - **Endpoint:** `POST /farmer_profiles/:farmer_profile_id/diagnose`
 - **Auth Required:** Yes
